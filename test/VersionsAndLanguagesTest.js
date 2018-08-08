@@ -33,7 +33,8 @@ var testDocuments = {
     ru: require('./testdata/ru'),
     sv: require('./testdata/sv'),
     tr: require('./testdata/tr'),
-    th: require('./testdata/th')
+    th: require('./testdata/th'),
+    zh: require("./testdata/zh")
 };
 
 lunrVersions.forEach(function(lunrVersion) {
@@ -98,6 +99,9 @@ lunrVersions.forEach(function(lunrVersion) {
 
                 var lunr = require('./lunr/' + lunrVersion.lunr);
                 require('../lunr.stemmer.support.js')(lunr);
+                if (language === 'zh') {    // for japanese, we must also load the tinyseg tokenizer
+                  // TODO: implement tokenizer
+              }
                 if (language === 'ja' || language === 'jp') {    // for japanese, we must also load the tinyseg tokenizer
                     require('../tinyseg')(lunr);
                 }
